@@ -1,0 +1,3 @@
+local GlobalAddonName, J4F = ...
+
+-- Currently nothing to do initially

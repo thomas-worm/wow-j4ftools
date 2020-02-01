@@ -1,0 +1,13 @@
+## Interface: 11302
+## X-Max-Interface: 11302
+## X-Min-Interface: 11302
+## Title: Just4Fun Tools
+## Notes: Various tools
+## Notes-deDE: Verschiedene Werkzeuge
+## SavedVariables: VJ4FT
+
+Minimap.lua
+RaidLootFrames.lua
+RaidLootFrames.xml
+ChatListener.lua
+init.lua
