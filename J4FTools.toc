@@ -4,7 +4,10 @@
 ## Title: Just4Fun Tools
 ## Notes: Various tools
 ## Notes-deDE: Verschiedene Werkzeuge
-## SavedVariables: VJ4FT
+## SavedVariables: VJ4F
+## X-Category: Raid Loot System
+## DefaultState: Enabled
+## Version: 0.1 alpha
 
 Minimap.lua
 RaidLootFrames.xml
