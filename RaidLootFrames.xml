@@ -1,6 +1,7 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:schemaLocation="http://www.blizzard.com/wow/ui/ UI.xsd">
+  <Script file="RaidLootFrames.lua"/>
   <Frame name="J4FTools_RaidLootBidFrameTemplate" virtual="true" parent="UIParent" toplevel="true" frameStrata="DIALOG" hidden="true" clampedToScreen="true" movable="true">
 		<Size x="243" y="84"/>
     <Anchors>
@@ -110,73 +111,43 @@
           </Layer>
         </Layers>
         <Scripts>
-          <OnLoad>
-            
-          </OnLoad>
-          <OnEnter>
-            GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
-						GameTooltip:SetItemByID(self:GetParent().itemID);
-						CursorUpdate(self);
-          </OnEnter>
-          <OnLeave>
-						GameTooltip:Hide();
-						ResetCursor();
-          </OnLeave>
-          <OnUpdate>
-						if ( GameTooltip:IsOwned(self) ) then
-							GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
-							GameTooltip:SetItemByID(self:GetParent().itemID);
-						end
-						CursorOnUpdate(self);
-          </OnUpdate>
-          <OnClick>
-            
-          </OnClick>
+          <OnEnter function="J4FTools_RaidLootBidFrame_IconFrame_OnEnter" />
+          <OnLeave function="J4FTools_RaidLootBidFrame_IconFrame_OnLeave" />
+          <OnUpdate function="J4FTools_RaidLootBidFrame_IconFrame_OnUpdate" />
+          <OnClick function="J4FTools_RaidLootBidFrame_IconFrame_OnClick" />
         </Scripts>
       </Button>
-      <Button parentKey="NeedButton" inherits="LootRollButtonTemplate" id="1">
+      <Button parentKey="NeedButton" inherits="LootRollButtonTemplate" id="1" tooltipText="Main">
         <Anchors>
           <Anchor point="TOPRIGHT" x="-37" y="-14"/>
         </Anchors>
         <Scripts>
-          <OnClick>
-            SendChatMessage("main", "RAID");
-          </OnClick>
-          <OnLoad>
-            
-          </OnLoad>
+          <OnClick function="J4FTools_RaidLootBidFrame_NeedButton_OnClick" />
+          <OnEnter function="J4FTools_RaidLootBidFrame_NeedButton_OnEnter" />
+          <OnLeave function="J4FTools_RaidLootBidFrame_NeedButton_OnLeave" />
         </Scripts>
         <NormalTexture file="Interface\Buttons\UI-GroupLoot-Dice-Up"/>
         <HighlightTexture file="Interface\Buttons\UI-GroupLoot-Dice-Highlight" alphaMode="ADD"/>
         <PushedTexture file="Interface\Buttons\UI-GroupLoot-Dice-Down"/>
       </Button>
-      <Button parentKey="PassButton" inherits="UIPanelCloseButton" id="0">
+      <Button parentKey="PassButton" inherits="UIPanelCloseButton" id="0" tooltipText="Pass">
         <Anchors>
           <Anchor point="TOPRIGHT" relativeTo="$parentCorner" relativePoint="TOPRIGHT" x="5" y="5"/>
         </Anchors>
         <Scripts>
-          <OnClick>
-            
-          </OnClick>
-          <OnEnter>
-            
-          </OnEnter>
-          <OnLeave>
-            
-          </OnLeave>
+          <OnClick function="J4FTools_RaidLootBidFrame_PassButton_OnClick" />
+          <OnEnter function="J4FTools_RaidLootBidFrame_PassButton_OnEnter" />
+          <OnLeave function="J4FTools_RaidLootBidFrame_PassButton_OnLeave" />
         </Scripts>
       </Button>
-      <Button parentKey="GreedButton" inherits="LootRollButtonTemplate" id="2">
+      <Button parentKey="GreedButton" inherits="LootRollButtonTemplate" id="2" tooltipText="Second">
         <Anchors>
           <Anchor point="TOP" relativeKey="$parent.NeedButton" relativePoint="BOTTOM" x="-2" y="2"/>
         </Anchors>
         <Scripts>
-          <OnLoad>
-            
-          </OnLoad>
-          <OnClick>
-            SendChatMessage("second", "RAID");
-          </OnClick>
+          <OnClick function="J4FTools_RaidLootBidFrame_GreedButton_OnClick" />
+          <OnEnter function="J4FTools_RaidLootBidFrame_GreedButton_OnEnter" />
+          <OnLeave function="J4FTools_RaidLootBidFrame_GreedButton_OnLeave" />
         </Scripts>
         <NormalTexture file="Interface\Buttons\UI-GroupLoot-Coin-Up"/>
         <HighlightTexture file="Interface\Buttons\UI-GroupLoot-Coin-Highlight" alphaMode="ADD"/>

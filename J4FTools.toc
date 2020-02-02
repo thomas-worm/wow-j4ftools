@@ -7,7 +7,6 @@
 ## SavedVariables: VJ4FT
 
 Minimap.lua
-RaidLootFrames.lua
 RaidLootFrames.xml
 ChatListener.lua
 init.lua
