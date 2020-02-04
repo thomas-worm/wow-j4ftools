@@ -1,4 +1,4 @@
-local GlobalAddonName, J4F = ...
+local GlobalAddonName, J4FT = ...
 
 -- helper functions
 local function show_tooltip_with_text(self, text)
@@ -60,7 +60,7 @@ function J4FTools_RaidLootBidFrame_NeedButton_OnClick(self)
 end
 
 function J4FTools_RaidLootBidFrame_NeedButton_OnEnter(self)
-	show_tooltip_with_text(self, "Main")
+	show_tooltip_with_text(self, J4FT_LOOTBIDFRAME_MAINBUTTON_TEXT)
 end
 
 function J4FTools_RaidLootBidFrame_NeedButton_OnLeave(self)
@@ -75,7 +75,7 @@ function J4FTools_RaidLootBidFrame_GreedButton_OnClick(self)
 end
 
 function J4FTools_RaidLootBidFrame_GreedButton_OnEnter(self)
-	show_tooltip_with_text(self, "Second")
+	show_tooltip_with_text(self, J4FT_LOOTBIDFRAME_SECONDBUTTON_TEXT)
 end
 
 function J4FTools_RaidLootBidFrame_GreedButton_OnLeave(self)
@@ -89,7 +89,7 @@ function J4FTools_RaidLootBidFrame_PassButton_OnClick(self)
 end
 
 function J4FTools_RaidLootBidFrame_PassButton_OnEnter(self)
-	show_tooltip_with_text(self, "Pass")
+	show_tooltip_with_text(self, J4FT_LOOTBIDFRAME_PASSBUTTON_TEXT)
 end
 
 function J4FTools_RaidLootBidFrame_PassButton_OnLeave(self)
