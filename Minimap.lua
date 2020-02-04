@@ -1,7 +1,7 @@
-local GlobalAddonName, J4F = ...
+local GlobalAddonName, J4FT = ...
 
 local MiniMapIcon = CreateFrame("Button", "J4T_MinimapIcon", Minimap)
-J4F.MiniMapIcon = MiniMapIcon
+J4FT.MiniMapIcon = MiniMapIcon
 MiniMapIcon:SetHighlightTexture("Interface\\Minimap\\UI-Minimap-ZoomButton-Highlight") 
 MiniMapIcon:SetSize(32,32) 
 MiniMapIcon:SetFrameStrata("MEDIUM")
@@ -20,9 +20,9 @@ MiniMapIcon.border:SetAllPoints()
 MiniMapIcon:RegisterForClicks("anyUp")
 MiniMapIcon:SetScript("OnEnter",function(self) 
 	GameTooltip:SetOwner(self, "ANCHOR_LEFT") 
-	GameTooltip:AddLine("Just4Fun Tools") 
-	GameTooltip:AddLine("Links",1,1,1) 
-	GameTooltip:AddLine("Rechts",1,1,1) 
+	GameTooltip:AddLine(J4FT_TITLE)
+	GameTooltip:AddLine(J4FT_LEFTCLICK,1,1,1) 
+	GameTooltip:AddLine(J4FT_RIGHTCLICK,1,1,1) 
 	GameTooltip:Show() 
 end)
 MiniMapIcon:SetScript("OnLeave", function(self)    
@@ -53,8 +53,8 @@ local function IconMoveButton(self)
 		x, y = x / self:GetEffectiveScale() - centerX, y / self:GetEffectiveScale() - centerY
 		self:ClearAllPoints()
 		self:SetPoint("CENTER", x, y)
-		VJ4FT.Addon.IconMiniMapLeft = x
-		VJ4FT.Addon.IconMiniMapTop = y
+		VCJ4FT.Addon.IconMiniMapLeft = x
+		VCJ4FT.Addon.IconMiniMapTop = y
 	else
 		local mx, my = Minimap:GetCenter()
 		local px, py = GetCursorPosition()
@@ -76,8 +76,8 @@ local function IconMoveButton(self)
 		end
 		self:ClearAllPoints()
 		self:SetPoint("CENTER", Minimap, "CENTER", x, y)
-		VJ4FT.Addon.IconMiniMapLeft = x
-		VJ4FT.Addon.IconMiniMapTop = y
+		VCJ4FT.Addon.IconMiniMapLeft = x
+		VCJ4FT.Addon.IconMiniMapTop = y
 	end
 end
 
@@ -93,4 +93,17 @@ MiniMapIcon:SetScript("OnDragStop", function(self)
 	self.isMoving = false
 end)
 
-MiniMapIcon:Show()
+MiniMapIcon:RegisterEvent("ADDON_LOADED")
+MiniMapIcon:SetScript("OnEvent", function(self, event, ...)
+	if event == "ADDON_LOADED" then
+		local addonName = ...
+		if addonName ~= GlobalAddonName then
+			return
+		end
+		if VCJ4FT and VCJ4FT.Addon and VCJ4FT.Addon.IconMiniMapLeft and VCJ4FT.Addon.IconMiniMapTop then
+			J4FT.MiniMapIcon:ClearAllPoints()
+			J4FT.MiniMapIcon:SetPoint("CENTER", VCJ4FT.Addon.IconMiniMapLeft, VCJ4FT.Addon.IconMiniMapTop)
+		end
+		J4FT.MiniMapIcon:Show()
+	end
+end)

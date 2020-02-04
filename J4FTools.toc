@@ -7,8 +7,10 @@
 ## Version: 0.0.0.2
 ## X-Category: Miscellaneous
 ## SavedVariables: VJ4FT
+## SavedVariablesPerCharacter: VCJ4FT
 ## DefaultState: Enabled
 
+localization/localization.xml
 Minimap.lua
 RaidLootFrames.xml
 ChatListener.lua
