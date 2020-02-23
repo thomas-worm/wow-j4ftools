@@ -153,7 +153,7 @@
         <HighlightTexture file="Interface\Buttons\UI-GroupLoot-Coin-Highlight" alphaMode="ADD"/>
         <PushedTexture file="Interface\Buttons\UI-GroupLoot-Coin-Down"/>
       </Button>
-      <StatusBar parentKey="Timer" drawLayer="ARTWORK" minValue="0" maxValue="60000" defaultValue="0">
+      <StatusBar parentKey="Timer" drawLayer="ARTWORK" minValue="0" maxValue="3000" defaultValue="3000">
         <Size x="152" y="10"/>
         <Anchors>
           <Anchor point="TOPLEFT" relativeTo="$parentSlotTexture" relativePoint="BOTTOMLEFT" x="13" y="10"/>
@@ -178,7 +178,7 @@
 						self:GetStatusBarTexture():SetDrawLayer("BACKGROUND");
 					</OnLoad>
           <OnUpdate>
-            
+            J4FTools_RaidLootBidFrame_Timer_OnUpdate(self, elapsed);
           </OnUpdate>
         </Scripts>
         <BarTexture parentKey="Bar" file="Interface\PaperDollInfoFrame\UI-Character-Skills-Bar" />

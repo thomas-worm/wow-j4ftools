@@ -24,6 +24,7 @@ function J4FTools_RaidLootBidFrame_OnShow(self)
 	self.Name:SetText(itemName)
 	local color = ITEM_QUALITY_COLORS[itemRarity]
 	self.Name:SetVertexColor(color.r, color.g, color.b)
+	self.countdown = false
 end
 
 -- RaidLootBidFrame.IconFrame events
@@ -55,7 +56,11 @@ end
 -- RaidLootBidFrame.NeedButton events
 
 function J4FTools_RaidLootBidFrame_NeedButton_OnClick(self)
-	SendChatMessage("main", "RAID")
+	if self:GetParent().rollMode == "roll" then
+		RandomRoll(1, 100)
+	elseif self:GetParent().rollMode == "gp" then
+		SendChatMessage("main", "RAID")
+	end
 	self:GetParent():Hide()
 end
 
@@ -70,7 +75,11 @@ end
 -- RaidLootBidFrame.GreedButton events
 
 function J4FTools_RaidLootBidFrame_GreedButton_OnClick(self)
-	SendChatMessage("second", "RAID")
+	if self:GetParent().rollMode == "roll" then
+		RandomRoll(1, 99)
+	elseif self:GetParent().rollMode == "gp" then
+		SendChatMessage("second", "RAID")
+	end
 	self:GetParent():Hide()
 end
 
@@ -94,4 +103,31 @@ end
 
 function J4FTools_RaidLootBidFrame_PassButton_OnLeave(self)
 	hide_tooltip()
+end
+
+-- RaidLootBidFrame Timer events
+
+function J4FTools_RaidLootBidFrame_SetCountdownTime(self, value)
+	self.remainingTime = value
+	self.Timer:SetMinMaxValues(0, value)
+end
+
+function J4FTools_RaidLootBidFrame_StartCountdown(self)
+	self.countdown = true
+end
+
+function J4FTools_RaidLootBidFrame_Timer_OnUpdate(self, elapsed)
+	local elapsedMilliseconds = elapsed * 1000;
+	local countdown = self:GetParent().countdown
+	if countdown then
+		local currentValue = self:GetParent().remainingTime
+		local newValue = currentValue - elapsedMilliseconds
+		if (newValue < 0) then
+			self:GetParent().remainingTime = 0
+			self:GetParent():Hide()
+		else
+			self:GetParent().remainingTime = newValue
+			self:SetValue(newValue)
+		end
+	end
 end

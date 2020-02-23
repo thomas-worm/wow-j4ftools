@@ -22,7 +22,7 @@ MiniMapIcon:SetScript("OnEnter",function(self)
 	GameTooltip:SetOwner(self, "ANCHOR_LEFT") 
 	GameTooltip:AddLine(J4FT_TITLE)
 	GameTooltip:AddLine(J4FT_LEFTCLICK,1,1,1) 
-	GameTooltip:AddLine(J4FT_RIGHTCLICK,1,1,1) 
+	GameTooltip:AddLine(J4FT_RIGHTCLICK .. " - " .. J4FT_MINIMAP_RIGHTCLICK,1,1,1) 
 	GameTooltip:Show() 
 end)
 MiniMapIcon:SetScript("OnLeave", function(self)    
@@ -91,6 +91,19 @@ MiniMapIcon:SetScript("OnDragStop", function(self)
 	self:UnlockHighlight()
 	self:SetScript("OnUpdate", nil)
 	self.isMoving = false
+end)
+
+local minimapMenuFrame = CreateFrame("Frame", "ExRTMiniMapMenuFrame", nil, "UIDropDownMenuTemplate");
+
+MiniMapIcon:SetScript("OnMouseUp", function(self, button)
+	if button == "RightButton" then
+		EasyMenu({
+			{
+				text = J4FT_MINIMAP_MENU_TITLE,
+				isTitle = true
+			}
+		}, minimapMenuFrame, "cursor", 10 , -15, "MENU")
+	end
 end)
 
 MiniMapIcon:RegisterEvent("ADDON_LOADED")
