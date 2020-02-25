@@ -186,9 +186,7 @@
       </StatusBar>
     </Frames>
     <Scripts>
-      <OnLoad>
-        
-      </OnLoad>
+      <OnLoad function="J4FTools_RaidLootBidFrame_OnLoad" />
       <OnShow function="J4FTools_RaidLootBidFrame_OnShow" />
       <OnEvent />
     </Scripts>

@@ -4,7 +4,7 @@
 ## Title: Just4Fun Tools
 ## Notes: Various tools
 ## Notes-deDE: Verschiedene Werkzeuge
-## Version: 1.0.0.0
+## Version: 1.0.1.0
 ## X-Category: Miscellaneous
 ## SavedVariables: VJ4FT
 ## SavedVariablesPerCharacter: VCJ4FT

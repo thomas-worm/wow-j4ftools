@@ -12,6 +12,10 @@ end
 
 -- RaidLootBidFrame events
 
+function J4FTools_RaidLootBidFrame_OnLoad(self)
+	self.active = false
+end
+
 function J4FTools_RaidLootBidFrame_OnShow(self)
 	local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(self.itemID)
 
@@ -25,6 +29,7 @@ function J4FTools_RaidLootBidFrame_OnShow(self)
 	local color = ITEM_QUALITY_COLORS[itemRarity]
 	self.Name:SetVertexColor(color.r, color.g, color.b)
 	self.countdown = false
+	self.active = true
 end
 
 -- RaidLootBidFrame.IconFrame events
@@ -107,6 +112,12 @@ end
 
 -- RaidLootBidFrame Timer events
 
+function J4FTools_RaidLootBidFrame_ResetCountdown(self, value)
+	local min, max = self.Timer:GetMinMaxValues()
+	self.remainingTime = max
+	self.Timer:SetValue(max)
+end
+
 function J4FTools_RaidLootBidFrame_SetCountdownTime(self, value)
 	self.remainingTime = value
 	self.Timer:SetMinMaxValues(0, value)
@@ -124,6 +135,7 @@ function J4FTools_RaidLootBidFrame_Timer_OnUpdate(self, elapsed)
 		local newValue = currentValue - elapsedMilliseconds
 		if (newValue < 0) then
 			self:GetParent().remainingTime = 0
+			self:GetParent().active = false
 			self:GetParent():Hide()
 		else
 			self:GetParent().remainingTime = newValue
