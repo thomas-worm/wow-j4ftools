@@ -1,0 +1,4 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<Include file="controller/Chat/Chat.xml" />
+	<Include file="controller/RaidLoot/RaidLoot.xml" />
+</Ui>

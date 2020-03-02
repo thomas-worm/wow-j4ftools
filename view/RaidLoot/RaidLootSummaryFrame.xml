@@ -1,0 +1,101 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.blizzard.com/wow/ui/ UI.xsd">
+    <Script file="view/RaidLoot/RaidLootSummaryFrame.xml.lua" />
+    <Frame name="J4FT.View.RaidLoot.RaidLootSummaryFrame.Template" virtual="true" parent="UIParent" toplevel="true" frameStrata="TOOLTIP" hidden="true" clampedToScreen="true" movable="true">
+        <Size x="500" y="300" />
+        <Anchors>
+        <Anchor point="CENTER">
+            <Offset>
+            <AbsDimension x="0" y="0" />
+            </Offset>
+        </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+            <EdgeSize>
+                <AbsValue val="16"/>
+            </EdgeSize>
+            <TileSize>
+                <AbsValue val="16"/>
+            </TileSize>
+            <BackgroundInsets>
+                <AbsInset left="4" right="4" top="4" bottom="4"/>
+            </BackgroundInsets>
+        </Backdrop>
+        <Layers>
+            <Layer level="OVERLAY">
+                <Texture parentKey="TopOverlay" hidden="true">
+                    <Anchors>
+                        <Anchor point="CENTER" relativePoint="TOP" x="0" y="1" />
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="OVERLAY">
+                <Texture parentKey="BottomOverlay" hidden="true">
+                    <Anchors>
+                        <Anchor point="CENTER" relativePoint="BOTTOM" x="0" y="2" />
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="ARTWORK">
+                <Texture file="Interface\Buttons\UI-GroupLoot-Dice-Up">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="10" y="-10"/>
+                </Anchors>
+                </Texture>
+                <FontString name="MainHeaderText" inherits="GameTooltipHeaderText" text="J4FT_NEED_MAIN">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="47.5" y="-17.5" />
+                    </Anchors>
+                    <Color r="1.0" g="1.0" b="0.0" />
+                </FontString>
+            </Layer>
+            <Layer level="ARTWORK">
+                <Texture file="Interface\Buttons\UI-GroupLoot-Coin-Up">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="TOP" x="10" y="-10"/>
+                </Anchors>
+                </Texture>
+                <FontString name="SecondHeaderText" inherits="GameTooltipHeaderText" text="J4FT_NEED_SECOND">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativePoint="TOP" x="47.5" y="-17.5" />
+                    </Anchors>
+                    <Color r="1.0" g="1.0" b="0.0" />
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Slider parentKey="NeedScrollBar" inherits="HybridScrollBarTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="TOP" x="-25" y="-60" />
+                    <Anchor point="BOTTOMLEFT" relativePoint="BOTTOM" x="-25" y="60" />
+                </Anchors>
+            </Slider>
+        </Frames>
+        <Frames>
+            <Slider parentKey="GreedScrollBar" inherits="HybridScrollBarTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="-35" y="-60" />
+                    <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="-35" y="60" />
+                </Anchors>
+            </Slider>
+            <Button name="CloseButton" inherits="UIPanelButtonTemplate" text="CLOSE">
+            <Anchors>
+                <Anchor point="BOTTOM" relativePoint="BOTTOM" x="0" y="10"/>
+            </Anchors>
+            <Scripts>
+                <OnClick>
+                    PlaySound(SOUNDKIT.IG_MAINMENU_OPTION);
+                    self:GetParent():Hide()
+                </OnClick>
+            </Scripts>
+        </Button>
+        </Frames>
+        <Scripts>
+            <OnLoad>
+                self:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+                self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+            </OnLoad>
+        </Scripts>
+    </Frame>
+</Ui>

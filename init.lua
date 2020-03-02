@@ -14,12 +14,13 @@ initFrame:SetScript("OnEvent", function(self, event, ...)
         -- Initializes saved variables per character
         VCJ4FT = VCJ4FT or {}
         VCJ4FT.Addon = VCJ4FT.Addon or {}
-        -- Opening loot frame first time for initialization
-        J4FTools_RaidLootBidFrame_ResetCountdown(J4FTools_RaidLootBidFrame)
-        J4FTools_RaidLootBidFrame.itemID = 0
-        J4FTools_RaidLootBidFrame.rollMode = "roll"
-        J4FTools_RaidLootBidFrame.countdown = false
-        J4FTools_RaidLootBidFrame:Show()
-        J4FTools_RaidLootBidFrame:Hide()
+
+        -- Create View
+        local raidLootBidFrame = J4FT.View.RaidLoot.RaidLootBidFrame:new()
+        local raidLootSummaryFrame = J4FT.View.RaidLoot.RaidLootSummaryFrame:new()
+
+        -- Create Controllers
+        local chatController = J4FT.Controller.Chat.ChatController:new()
+        local raidLootController = J4FT.Controller.RaidLoot.RaidLootController:new({["ChatController"] = chatController }, { ["RaidLootBidFrame"] = raidLootBidFrame, ["RaidLootSummaryFrame"] = raidLootSummaryFrame })
     end
 end)

@@ -4,14 +4,14 @@
 ## Title: Just4Fun Tools
 ## Notes: Various tools
 ## Notes-deDE: Verschiedene Werkzeuge
-## Version: 1.0.1.0
+## Version: 1.0.2.0
 ## X-Category: Miscellaneous
 ## SavedVariables: VJ4FT
 ## SavedVariablesPerCharacter: VCJ4FT
 ## DefaultState: Enabled
 
 localization/localization.xml
-Minimap.lua
-RaidLootFrames.xml
-ChatListener.lua
+service/service.xml
+view/view.xml
+controller/controller.xml
 init.lua
